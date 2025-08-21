@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?useSSL=true&serverTimezone=UTC&characterEncoding=utf8
+    username: root
+    password: 123456
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html  # Swagger UI 访问路径
+    tags-sorter: alpha      # 按字母顺序排序标签
+    operations-sorter: alpha # 按字母顺序排序接口
+  api-docs:
+    path: /v3/api-docs      # OpenAPI 文档的 JSON 路径
+  default-produces-media-type: application/json # 默认响应类型
+  default-consumes-media-type: application/json # 默认请求类型
