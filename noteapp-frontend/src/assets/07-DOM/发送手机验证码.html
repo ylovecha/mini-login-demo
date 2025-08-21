@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>短信验证码</title>
+    <style>
+      div {
+        width: 570px;
+        height: 200px;
+        margin: 200px auto;
+        font-size: 22px;
+      }
+
+      input {
+        float: left;
+        width: 180px;
+        height: 25px;
+        outline: none;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+      }
+
+      button {
+        float: left;
+        width: 100px;
+        height: 29px;
+        line-height: 29px;
+        outline: none;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" placeholder="验证码" />
+      <button>发送</button>
+    </div>
+    <script>
+      let btn = document.querySelector('button')
+      let time = 60
+      btn.addEventListener('click', function () {
+        btn.disabled = true
+        let clocktimer = setInterval(function () {
+          if (time == 0) {
+            clearInterval(clocktimer)
+            btn.disabled = false
+            btn.innerHTML = '发送'
+            time = 60
+          } else {
+            btn.innerHTML = `还剩下${time}秒`
+            time--
+          }
+        }, 1000)
+      })
+    </script>
+  </body>
+</html>

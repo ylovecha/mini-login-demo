@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="code"></div>
+  <button class="btn" onclick="getRandomCode()">生成随机码</button>
+  <script>
+    function getRandomCode() {
+      let characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+      let strCode = ''
+      for (let i = 0; i < 4; i++) {
+        let codePos = Math.floor(Math.random() * characters.length)
+        strCode += characters[codePos]
+      }
+      document.getElementById('code').innerHTML = strCode
+    }
+  </script>
+
+</body>
+
+</html>

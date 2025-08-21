@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 300px;
+        height: 200px;
+        margin: 100px auto;
+        background-color: #ffe;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      let box = document.getElementById('box')
+      function Point(x, y, color) {
+        this.x = x
+        this.y = y
+        this.color = color
+      }
+      Point.prototype.createDiv = function () {
+        this.div = document.createElement('div')
+        box.appendChild(this.div)
+        //设置div样式
+        this.div.style.width = 20 + 'px'
+        this.div.style.height = 20 + 'px'
+        this.div.style.borderRadius = 10 + 'px' //用圆角边框样式生成点
+        this.div.style.backgroundColor = this.color
+        this.div.style.position = 'absolute'
+        this.div.style.left = this.x + 'px'
+        this.div.style.top = this.y + 'px'
+      }
+      //用构造函数创建点对象
+      let p1 = new Point(80, 80, 'lightgreen')
+      let p2 = new Point(140, 80, 'coral')
+      let p3 = new Point(200, 80, 'burlywood')
+      // 用原型方法创建元素，添加到页面
+      p1.createDiv()
+      p2.createDiv()
+      p3.createDiv()
+    </script>
+  </body>
+</html>

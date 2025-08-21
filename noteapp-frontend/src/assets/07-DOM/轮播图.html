@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>轮播图</title>
+    <style>
+      div {
+        width: 300px;
+        height: 300px;
+        margin: 100px auto;
+        text-align: center;
+      }
+      button {
+        margin-top: 50px;
+        width: 80px;
+        height: 50px;
+        border-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img id="img-box" src="images/1.jpg" alt="" width="100%" height="100%" />
+      <button>手动切换</button>
+    </div>
+    <script>
+      window.onload = goNextImage
+      let imgBox = document.querySelector('#img-box')
+      let btn = document.querySelector('button')
+      btn.onclick = goNextImage
+      setInterval(goNextImage, 3000)
+      let i = 0
+      function goNextImage() {
+        i++
+        imgBox.src = `images/${i}.jpg`
+        if (i == 3) i = 0
+      }
+    </script>
+  </body>
+</html>

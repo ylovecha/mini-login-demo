@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5s跳转指定页面</title>
+    <style>
+      div {
+        width: 500px;
+        height: 200px;
+        margin: 100px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      let div = document.querySelector('div')
+      let times = 4
+      setInterval(function () {
+        if (times == 0) {
+          location.href = 'https://www.baidu.com'
+        } else {
+          div.innerHTML = `当前页面内容逃走啦！${times}秒之后跳转到百度首页`
+          times--
+        }
+      }, 1000)
+    </script>
+  </body>
+</html>

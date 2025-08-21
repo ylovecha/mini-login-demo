@@ -1,0 +1,37 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Login from '../views/Login.vue'
+
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    name: 'Login',
+    component: Login
+  },
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+// 路由守卫 - 检查登录状态
+router.beforeEach((to, from, next) => {
+  // 使用认证工具检查登录状态
+  const token = localStorage.getItem('auth_token')
+  const isAuthenticated = !!token
+  
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/')
+  } else if (to.path === '/' && isAuthenticated) {
+    next('/home')
+  } else {
+    next()
+  }
+})
+
+export default router 

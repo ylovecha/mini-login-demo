@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+// 监听浏览器的前进和后退事件
+    window.addEventListener("popstate", (event) => {
+      // 弹出警告框，显示当前位置和状态
+      alert(`位置：${document.location}，状态：${JSON.stringify(event.state)}`);
+    });
+
+    // 向浏览器的历史记录中添加一个状态，状态为{page: 1}，标题为“标题 1”，URL为“?page=1”
+    history.pushState({ page: 1 }, "标题 1", "?page=1");
+    
+    history.pushState({ page: 2 }, "标题 2", "?page=2");
+    
+    history.replaceState({ page: 3 }, "标题 3", "?page=3");
+    // 返回浏览器历史记录中的上一个状态
+    history.back(); // 显示警告“位置：http://example.com/example.html?page=1，状态：{"page":1}”
+    // 返回浏览器历史记录中的上一个状态
+    history.back(); // 显示警告“位置：http://example.com/example.html，状态：null”
+    // 前进到浏览器历史记录中的下一个状态
+    history.go(2); // 显示警告“位置：http://example.com/example.html?page=3，状态：{"page":3}”
+  </script>
+</body>
+
+</html>

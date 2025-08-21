@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="ul-wrap">
+      <li>DOM查找</li>
+      <li>DOM修改</li>
+      <li>DOM添加</li>
+      <li>DOM删除</li>
+    </ul>
+    <!-- <button class="begin">开始</button>
+    <button class="stop">取消</button> -->
+    <script>
+      // console.log(1)
+      // document.onclick = function () {
+      //   console.log('click')
+      // }
+      // console.log(2)
+      // setTimeout(function () {
+      //   console.log(3)
+      // }, 3000)
+
+      // let beginBtn = document.querySelector('.begin')
+      // let stopBtn = document.querySelector('.stop')
+      // let timer
+      // beginBtn.addEventListener('click', function () {
+      //   timer = setInterval(function () {
+      //     console.log(111)
+      //   }, 1000)
+      // })
+      // stopBtn.addEventListener('click', function () {
+      //   clearInterval(timer)
+      // })
+      let ulWrap = document.querySelector('.ul-wrap')
+      ulWrap.addEventListener(
+        'click',
+        function (e) {
+          alert('DOM操作~')
+          console.log(e.target)
+          console.log(this)
+          console.log(e.currentTarget)
+          console.log(e.currentTarget===this)
+        },
+        false
+      )
+    </script>
+  </body>
+</html>

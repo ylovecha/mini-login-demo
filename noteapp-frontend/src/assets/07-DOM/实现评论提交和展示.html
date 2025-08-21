@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>评论提交和展示</title>
+  <style type="text/css">
+    #outside {
+      width: 1000px;
+      margin: 0 auto;
+      border: 1px solid #E7EAEE;
+      overflow: hidden;
+      padding-bottom: 15px;
+    }
+
+    #outside h3 {
+      width: 95%;
+      margin: 15px auto;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #E7EAEE;
+      font-family: "宋体", sans-serif;
+    }
+
+    #outside .comment1 {
+      width: 95%;
+      margin: 10px auto;
+      color: #BBBBBB;
+      font-size: 12px;
+      border-bottom: 1px dashed #E7EAEE;
+      font-family: "宋体", sans-serif;
+    }
+
+    #outside .comment1 time {
+      float: right;
+    }
+
+    #outside .comment1 span {
+      color: #5979B2;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    #outside .comment1 p {
+      font-size: 16px;
+      color: black;
+    }
+
+    #outside h4 {
+      width: 95%;
+      margin: 15px auto;
+      color: #404E73;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: "宋体", sans-serif;
+    }
+
+    #outside #addComment {
+      width: 95%;
+      margin: 0 auto;
+      font-size: 12px;
+      color: #BBBBBB;
+    }
+
+    #outside #name {
+      width: 200px;
+      border: 1px solid #D9E2EF;
+    }
+
+    #outside #Content {
+      width: 800px;
+      height: 100px;
+      resize: none;
+      border: 1px solid #D9E2EF;
+      vertical-align: text-top;
+    }
+
+    #outside button {
+      width: 100px;
+      height: 30px;
+      background-color: #2D46A3;
+      color: white;
+      border: hidden;
+      float: right;
+      margin: 15px 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="outside">
+    <h3>最新评论</h3>
+    <!-- 评论显示区 -->
+    <div id="comment">
+      <div id="comment1" class="comment1">
+        网友<span>nickname1</span>
+        <time>2023年11月4日 22:19:13</time>
+        <p>学习JavaScript！</p>
+      </div>
+    </div>
+    <h4>发表评论</h4>
+    <!-- 添加评论 -->
+    <div id="addComment">
+      昵称：<input type="text" id="name"><br><br>
+      评论内容：<textarea id="Content"></textarea>
+      <button onclick="addComment()">提交评论</button>
+    </div>
+  </div>
+  <script type="text/javascript">
+    // 定义一个变量idNum，初始值为1
+    let idNum = 1;
+    
+    // 格式化日期函数
+    function formatDate(date) {
+      // 获取年份
+      const year = date.getFullYear();
+      // 获取月份，月份从0开始，需要加1
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      // 获取日期
+      const day = String(date.getDate()).padStart(2, '0');
+      // 获取小时
+      const hours = String(date.getHours()).padStart(2, '0');
+      // 获取分钟
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      // 获取秒数
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+      // 返回格式化后的日期字符串
+      return `${year}年${month}月${day}日 ${hours}:${minutes}:${seconds}`;
+    }
+    
+    // 定义一个函数addComment，用于添加评论
+    function addComment() {
+      // idNum自增
+      idNum++;
+      // 获取输入框的值
+      let inputValue = document.getElementById("name").value;
+      let textValue = document.getElementById('Content').value;
+      // 如果输入框的值为空，则弹出提示框
+      if (inputValue == "" || textValue == "") {
+        alert("昵称和评论内容不能为空！");
+        return;
+      }
+      // 获取评论模板
+      let content1 = document.getElementById("comment1");
+      // 克隆评论模板
+      let newComment = content1.cloneNode(true);
+      // 设置新评论的id
+      newComment.setAttribute("id", "comment" + idNum);
+      // 设置新评论的昵称
+      newComment.getElementsByTagName("span")[0].innerText = inputValue;
+      // 设置新评论的内容
+      newComment.getElementsByTagName("p")[0].innerText = textValue;
+      const now = new Date();
+      // 设置新评论的发表时间
+      newComment.getElementsByTagName("time")[0].innerText = formatDate(now);
+      // 获取评论容器
+      let commentDiv = document.getElementById("comment");
+      // 将新评论添加到评论容器中
+      commentDiv.appendChild(newComment);
+      // 清空输入框的值
+      document.getElementById("name").value = "";
+      document.getElementById('Content').value = "";
+    }
+  </script>
+</body>
+
+</html>

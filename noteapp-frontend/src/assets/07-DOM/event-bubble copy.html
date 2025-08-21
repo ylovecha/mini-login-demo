@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件冒泡</title>
+    <style>
+      #a,
+      #b,
+      #c {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid gray;
+      }
+      #a {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+      }
+      #b {
+        width: 80%;
+        height: 80%;
+        background-color: lightgreen;
+      }
+      #c {
+        width: 80%;
+        height: 80%;
+        background-color: orangered;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="a">
+      1
+      <div id="b">
+        2
+        <div id="c">3</div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('a').onclick = function () {
+        console.log(event.target, event.currentTarget)
+        alert('1')
+        document.getElementById('a').style.backgroundColor = '#ccc'
+        event.stopPropagation()
+      }
+      document.getElementById('b').onclick = function () {
+        console.log(event.target, event.currentTarget)
+        alert('2')
+        document.getElementById('b').style.backgroundColor = '#f0a'
+        event.stopPropagation()
+      }
+      document.getElementById('c').onclick = function () {
+        console.log(event.target, event.currentTarget)
+        alert('3')
+        document.getElementById('c').style.backgroundColor = '#ff0'
+        event.stopPropagation()
+      }
+    </script>
+  </body>
+</html>
