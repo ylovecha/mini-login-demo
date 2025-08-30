@@ -3,6 +3,10 @@ spring:
     url: jdbc:mysql://localhost:3306/demo?useSSL=true&serverTimezone=UTC&characterEncoding=utf8
     username: root
     password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update # 自动创建/更新表结构
+    show-sql: true # 显示 SQL 日志
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
@@ -19,3 +23,9 @@ springdoc:
     path: /v3/api-docs      # OpenAPI 文档的 JSON 路径
   default-produces-media-type: application/json # 默认响应类型
   default-consumes-media-type: application/json # 默认请求类型
+# DeepSeek API 配置
+deepseek:
+  api:
+    key: your-deepseek-api-key # 替换为实际 API Key
+    url: https://api.deepseek.com/chat/completions
+    model: deepseek-chat

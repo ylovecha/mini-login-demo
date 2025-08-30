@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
+import Notes from '../views/Notestest.vue';
+import AddNote from '../views/AddNote.vue';
 
 
 Vue.use(VueRouter)
@@ -11,8 +13,20 @@ const routes = [
     name: 'Login',
     component: Login
   },
+  { 
+    path: '/notes', 
+    name:'Notes',
+    component: Notes, 
+    props: true,
+    meta: { requiresAuth: true } // <- 这里加上
+  },
+  { 
+    path: '/add-note', 
+    component: AddNote, 
+    props: true,
+    meta: { requiresAuth: true } // <- 需要登录才能访问
+  },
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -21,16 +35,13 @@ const router = new VueRouter({
 
 // 路由守卫 - 检查登录状态
 router.beforeEach((to, from, next) => {
-  // 使用认证工具检查登录状态
   const token = localStorage.getItem('auth_token')
   const isAuthenticated = !!token
   
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next('/')
-  } else if (to.path === '/' && isAuthenticated) {
-    next('/home')
+    next('/')  // 需要登录的页面没有 token -> 跳登录页
   } else {
-    next()
+    next()     // 其他情况直接放行
   }
 })
 

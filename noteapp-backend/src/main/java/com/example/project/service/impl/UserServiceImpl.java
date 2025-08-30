@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.example.project.dto.form.UserLoginForm;
 
-
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -19,18 +18,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserLoginVO login(UserLoginForm form) {
         // 1. 根据用户名查询用户
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
-                .eq(User::getUsername, form.getUsername()));
-
-        // 2. 用户不存在或密码错误
-        if (user == null || !form.getPassword().equals(user.getPassword())) {
+        User user = this.userMapper.selectOne(
+                new LambdaQueryWrapper<User>()
+                        .eq(User::getUsername, form.getUsername())
+                        .eq(User::getPassword, form.getPassword())
+        );
+        if (user != null) {
+            UserLoginVO vo = new UserLoginVO();
+            vo.setUserId(user.getId());
+            vo.setUsername(user.getUsername());
+            return vo;
+        } else {
             throw new BusinessException("用户名或密码错误");
         }
-
-        // 4. 返回登录结果
-        UserLoginVO vo = new UserLoginVO();
-        vo.setUserId(user.getId());
-        vo.setUsername(user.getUsername());
-        return vo;
     }
 }
