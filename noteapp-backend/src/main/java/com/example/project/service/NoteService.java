@@ -1,9 +1,20 @@
 package com.example.project.service;
-import com.example.project.entity.Note;
+
 import java.util.List;
 
+import com.example.project.dto.form.NoteCreateForm;
+import com.example.project.dto.form.NotebookUpdateForm;
+import com.example.project.dto.form.UserLoginForm;
+import com.example.project.dto.vo.NoteVO;
+import com.example.project.dto.vo.UserLoginVO;
+
 public interface NoteService {
-    void save(Note note);
-    List<Note> getNotesByUserId(Long userId);
-    void deleteById(Long noteId);
+    Long createNote(NoteCreateForm form);
+    void deleteNoteByID(Long id);
+    void deleteNotesListByUserID(Long userId);
+    List<NoteVO> getNotesByUserID(Long userId);
+    void updateNote(NotebookUpdateForm form);
+    List<NoteVO> getTodayNoteByUserId(Long userId);
+    UserLoginVO login(UserLoginForm form);
+
 }

@@ -57,7 +57,7 @@
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
       <version>2.1.0</version> <!-- 检查最新版本并替换 -->
     </dependency>
-
+<!-- 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
@@ -67,7 +67,7 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
     </dependency>
-
+-->
     <!-- 配置处理 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

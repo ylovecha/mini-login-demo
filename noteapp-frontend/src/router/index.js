@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
-import Notes from '../views/Notestest.vue';
-import AddNote from '../views/AddNote.vue';
+//import Notes from '../views/Notestest.vue';
+import Home from '../views/Home.vue';
 
 
 Vue.use(VueRouter)
@@ -14,18 +14,19 @@ const routes = [
     component: Login
   },
   { 
-    path: '/notes', 
-    name:'Notes',
-    component: Notes, 
+    path: '/home', 
+    name:'Home',
+    component: Home, 
     props: true,
     meta: { requiresAuth: true } // <- 这里加上
   },
+  /*
   { 
     path: '/add-note', 
     component: AddNote, 
     props: true,
     meta: { requiresAuth: true } // <- 需要登录才能访问
-  },
+  },*/
 ]
 const router = new VueRouter({
   mode: 'history',

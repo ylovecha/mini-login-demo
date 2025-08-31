@@ -89,7 +89,7 @@ export default {
   localStorage.setItem('auth_token', result.data?.token || 'demo_token');
 
   // 跳转到 Notes 页面
-  this.$router.push('/notes');
+  this.$router.push('/home');
 
 } else {
   // 登录失败
